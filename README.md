@@ -1,3 +1,12 @@
+
+# NekoBoxForAndroidSecureLaunch (NekoBox для Android – безопасный запуск)
+
+EN:
+A VPN client that checks for apps from accredited IT companies before launch and blocks startup if any are detected (as of April 15, 2026).
+
+RU:
+VPN-клиент, который перед запуском проверяет наличие приложений аккредитованных ИТ-компаний и блокирует запуск, если они обнаружены (по состоянию на 15 апреля 2026 года).
+
 # NekoBox for Android
 
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
