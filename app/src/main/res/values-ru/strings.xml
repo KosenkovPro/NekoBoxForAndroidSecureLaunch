@@ -480,7 +480,15 @@
 <string name="vpn_permission_denied">Отказано в разрешении на создание службы VPN</string>
 <string name="blocked_apps_title">Обнаружены ограниченные приложения</string>
 <string name="blocked_apps_hint">VPN нельзя запустить, пока установлены приложения аккредитованных ИТ-компаний. Нажмите на карточку, чтобы открыть системные настройки и удалить приложение.</string>
+<string name="blocked_apps_hint_menu">На устройстве обнаружены приложения аккредитованных ИТ-компаний. Нажмите на карточку, чтобы открыть системные настройки и удалить приложение.</string>
 <string name="blocked_apps_cleared">Ограниченные приложения не найдены</string>
+<string name="blocked_apps_empty">На устройстве не установлено ни одного приложения из списка.</string>
+<string name="menu_packages">Пакеты</string>
+<string name="menu_about_modification">О модификации</string>
+<string name="about_modification_title">О модификации SecureLaunch</string>
+<string name="about_modification_description">Это модификация NekoBox for Android, которая перед запуском VPN проверяет наличие приложений аккредитованных ИТ-компаний (РФ). Если такие приложения обнаружены, запуск VPN блокируется и показывается список найденных пакетов, чтобы пользователь мог их удалить.</string>
+<string name="about_modification_author">Автор: Kosenkov Ivan</string>
+<string name="about_modification_version">Версия %1$s (%2$d)</string>
 <string name="wake_reset_connections">Сбросить исходящие соединения при выходе из спящего режима</string>
 <string name="warp_generate">Создать конфигурацию</string>
 <string name="warp_license">CloudFlare Warp - это бесплатный VPN-провайдер WireGuard. Используя его, вы соглашаетесь с условиями использования.</string>

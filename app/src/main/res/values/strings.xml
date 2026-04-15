@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">NekoBox</string>
-    <string name="app_name_long" translatable="false">NekoBox for Android</string>
+    <string name="app_name" translatable="false">NekoBoxForAndroidSecureLaunch</string>
+    <string name="app_name_long" translatable="false">NekoBoxForAndroidSecureLaunch</string>
     <string name="app_desc">The universal proxy toolchain for Android, written in Kotlin.</string>
     <string name="project">Project</string>
     <string name="github">Source code</string>
@@ -199,7 +199,15 @@
     <string name="vpn_permission_denied">Permission denied to create a VPN service</string>
     <string name="blocked_apps_title">Restricted applications detected</string>
     <string name="blocked_apps_hint">VPN cannot be started while applications from accredited IT companies are installed. Tap an item to open system settings and uninstall it.</string>
+    <string name="blocked_apps_hint_menu">Applications from accredited IT companies found on this device. Tap an item to open system settings and uninstall it.</string>
     <string name="blocked_apps_cleared">No restricted applications found</string>
+    <string name="blocked_apps_empty">No restricted applications installed on this device.</string>
+    <string name="menu_packages">Packages</string>
+    <string name="menu_about_modification">About modification</string>
+    <string name="about_modification_title">About SecureLaunch modification</string>
+    <string name="about_modification_description">This is a modified NekoBox for Android that checks for apps from Russian accredited IT companies before launch. If any such apps are detected, VPN start is blocked and the list of detected apps is shown so the user can uninstall them.</string>
+    <string name="about_modification_author">Author: Kosenkov Ivan</string>
+    <string name="about_modification_version">Version %1$s (%2$d)</string>
     <string name="reboot_required">Failed to start VPN service. You might need to reboot your
         device.</string>
     <!-- alert category -->

@@ -254,6 +254,13 @@
             android:launchMode="singleTask"
             android:parentActivityName=".ui.MainActivity" />
         <activity
+            android:name="moe.matsuri.nb4a.about.AboutModificationActivity"
+            android:configChanges="uiMode"
+            android:excludeFromRecents="true"
+            android:label="@string/menu_about_modification"
+            android:launchMode="singleTask"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity
             android:name="io.nekohasekai.sagernet.ui.ScannerActivity"
             android:configChanges="uiMode"
             android:excludeFromRecents="true"

@@ -48,6 +48,7 @@ import io.nekohasekai.sagernet.ktx.onMainDispatcher
 import io.nekohasekai.sagernet.ktx.parseProxies
 import io.nekohasekai.sagernet.ktx.readableMessage
 import io.nekohasekai.sagernet.ktx.runOnDefaultDispatcher
+import moe.matsuri.nb4a.about.AboutModificationActivity
 import moe.matsuri.nb4a.blocklist.AccreditedBlocklist
 import moe.matsuri.nb4a.blocklist.BlockedAppsActivity
 import moe.matsuri.nb4a.blocklist.BlockedAppsScanner
@@ -351,6 +352,21 @@ class MainActivity : ThemedActivity(),
             }
 
             R.id.nav_about -> displayFragment(AboutFragment())
+            R.id.nav_about_modification -> {
+                startActivity(Intent(this, AboutModificationActivity::class.java))
+                binding.drawerLayout.closeDrawers()
+                return false
+            }
+
+            R.id.nav_blocked_apps -> {
+                startActivity(
+                    Intent(this, BlockedAppsActivity::class.java)
+                        .putExtra(BlockedAppsActivity.EXTRA_SHOW_EMPTY, true)
+                )
+                binding.drawerLayout.closeDrawers()
+                return false
+            }
+
             R.id.nav_tuiguang -> {
                 launchCustomTab("https://neko-box.pages.dev/喵")
                 return false

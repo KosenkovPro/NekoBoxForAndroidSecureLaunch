@@ -24,19 +24,37 @@ import io.nekohasekai.sagernet.ui.ThemedActivity
  */
 class BlockedAppsActivity : ThemedActivity() {
 
+    companion object {
+        /** Если `true`, экран остаётся открытым даже с пустым списком
+         *  (вариант «открыто из меню»). По умолчанию — `false`:
+         *  экран используется как блокировка запуска VPN и сам закрывается,
+         *  когда совпадений не осталось. */
+        const val EXTRA_SHOW_EMPTY = "show_empty"
+    }
+
     private lateinit var binding: LayoutBlockedAppsBinding
     private val adapter = BlockedAdapter()
     private val items = mutableListOf<BlockedApp>()
+    private var showEmpty = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LayoutBlockedAppsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        showEmpty = intent.getBooleanExtra(EXTRA_SHOW_EMPTY, false)
+
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            setTitle(R.string.blocked_apps_title)
+            setTitle(
+                if (showEmpty) R.string.menu_packages
+                else R.string.blocked_apps_title
+            )
             setDisplayHomeAsUpEnabled(true)
+        }
+
+        if (showEmpty) {
+            binding.hintText.setText(R.string.blocked_apps_hint_menu)
         }
 
         binding.list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -60,6 +78,13 @@ class BlockedAppsActivity : ThemedActivity() {
     private fun refresh() {
         val found = BlockedAppsScanner.scan(this, AccreditedBlocklist.defaults)
         if (found.isEmpty()) {
+            if (showEmpty) {
+                items.clear()
+                adapter.notifyDataSetChanged()
+                binding.list.visibility = android.view.View.GONE
+                binding.emptyView.visibility = android.view.View.VISIBLE
+                return
+            }
             Toast.makeText(
                 this,
                 R.string.blocked_apps_cleared,
@@ -69,6 +94,8 @@ class BlockedAppsActivity : ThemedActivity() {
             return
         }
 
+        binding.list.visibility = android.view.View.VISIBLE
+        binding.emptyView.visibility = android.view.View.GONE
         items.clear()
         items.addAll(found)
         adapter.notifyDataSetChanged()
