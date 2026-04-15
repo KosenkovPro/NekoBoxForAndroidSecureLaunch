@@ -197,6 +197,9 @@
     <string name="stopping">Shutting down…</string>
     <string name="vpn_error">%s</string>
     <string name="vpn_permission_denied">Permission denied to create a VPN service</string>
+    <string name="blocked_apps_title">Restricted applications detected</string>
+    <string name="blocked_apps_hint">VPN cannot be started while applications from accredited IT companies are installed. Tap an item to open system settings and uninstall it.</string>
+    <string name="blocked_apps_cleared">No restricted applications found</string>
     <string name="reboot_required">Failed to start VPN service. You might need to reboot your
         device.</string>
     <!-- alert category -->

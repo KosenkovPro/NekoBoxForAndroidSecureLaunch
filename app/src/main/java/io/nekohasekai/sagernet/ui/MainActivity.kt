@@ -48,6 +48,9 @@ import io.nekohasekai.sagernet.ktx.onMainDispatcher
 import io.nekohasekai.sagernet.ktx.parseProxies
 import io.nekohasekai.sagernet.ktx.readableMessage
 import io.nekohasekai.sagernet.ktx.runOnDefaultDispatcher
+import moe.matsuri.nb4a.blocklist.AccreditedBlocklist
+import moe.matsuri.nb4a.blocklist.BlockedAppsActivity
+import moe.matsuri.nb4a.blocklist.BlockedAppsScanner
 import moe.matsuri.nb4a.utils.Util
 
 class MainActivity : ThemedActivity(),
@@ -87,9 +90,11 @@ class MainActivity : ThemedActivity(),
         }
 
         binding.fab.setOnClickListener {
-            if (DataStore.serviceState.canStop) SagerNet.stopService() else connect.launch(
-                null
-            )
+            if (DataStore.serviceState.canStop) {
+                SagerNet.stopService()
+            } else {
+                tryStartVpnWithBlocklistCheck()
+            }
         }
         binding.stats.setOnClickListener { if (DataStore.serviceState.connected) binding.stats.testConnection() }
 
@@ -399,6 +404,21 @@ class MainActivity : ThemedActivity(),
 
     private val connect = registerForActivityResult(VpnRequestActivity.StartService()) {
         if (it) snackbar(R.string.vpn_permission_denied).show()
+    }
+
+    /**
+     * Перед фактическим стартом VPN проверяет, есть ли на устройстве
+     * приложения из [AccreditedBlocklist]. Если есть — открывает экран
+     * со списком этих приложений вместо запуска VPN; иначе запускает как
+     * обычно.
+     */
+    private fun tryStartVpnWithBlocklistCheck() {
+        val found = BlockedAppsScanner.scan(this, AccreditedBlocklist.defaults)
+        if (found.isNotEmpty()) {
+            startActivity(Intent(this, BlockedAppsActivity::class.java))
+        } else {
+            connect.launch(null)
+        }
     }
 
     // may NOT called when app is in background

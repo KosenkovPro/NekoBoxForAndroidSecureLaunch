@@ -247,6 +247,13 @@
             android:launchMode="singleTask"
             android:parentActivityName=".ui.MainActivity" />
         <activity
+            android:name="moe.matsuri.nb4a.blocklist.BlockedAppsActivity"
+            android:configChanges="uiMode"
+            android:excludeFromRecents="true"
+            android:label="@string/blocked_apps_title"
+            android:launchMode="singleTask"
+            android:parentActivityName=".ui.MainActivity" />
+        <activity
             android:name="io.nekohasekai.sagernet.ui.ScannerActivity"
             android:configChanges="uiMode"
             android:excludeFromRecents="true"
