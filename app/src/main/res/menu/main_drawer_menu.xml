@@ -42,6 +42,14 @@
             android:id="@+id/nav_blocked_apps"
             android:icon="@drawable/ic_action_description"
             android:title="@string/menu_packages" />
+        <item
+            android:id="@+id/nav_language"
+            android:icon="@drawable/ic_baseline_wb_sunny_24"
+            android:title="@string/menu_language" />
+        <item
+            android:id="@+id/nav_theme"
+            android:icon="@drawable/ic_baseline_wb_sunny_24"
+            android:title="@string/menu_theme" />
     </group>
 
     <group

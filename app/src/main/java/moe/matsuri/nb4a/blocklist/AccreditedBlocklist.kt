@@ -351,6 +351,71 @@ object AccreditedBlocklist {
         "com.kaspersky.kasperskyinternetsecurity",
         "com.kaspersky.passwordmanager",
         "ru.drweb",
-        "com.eset.mobile.security.russia"
+        "com.eset.mobile.security.russia",
+
+        // --- App stores (RU)
+        "ru.rustore.client",
+        "com.nashstore",
+
+        // --- Grocery / retail chains
+        "ru.pyaterochka.app",
+        "com.semerochka",
+        "ru.x5.retailgroup.x5bonus",
+        "com.avoska.app",
+        "ru.chizhik.app",
+        "ru.perekrestok.app",
+        "ru.magnit.app",
+        "ru.lenta.app",
+        "ru.vprok.app",
+        "ru.utkonos.app",
+        "ru.samokat.app",
+        "ru.sbermarket",
+        "ru.torgservis.svetofor",
+
+        // --- DIY / hardware
+        "ru.maxidom.app",
+        "ru.vseinstrumenti.app",
+        "ru.castorama.app",
+
+        // --- Banks (major, core)
+        "ru.raiffeisen.mobile",
+        "ru.rosbank.android",
+        "ru.gazprombank.android.mobilebank",
+        "ru.psbank.mobile",
+        "ru.akbars.mobile",
+
+        // --- Yandex ecosystem (core)
+        "ru.yandex.searchplugin",
+        "ru.yandex.browser",
+        "ru.yandex.maps",
+        "ru.yandex.metro",
+        "ru.yandex.taxi",
+        "ru.yandex.eda",
+        "ru.yandex.lavka",
+
+        // --- Social / Media (core)
+        "com.vkontakte.android",
+        "ru.ok.android",
+        "ru.mail.mailapp",
+
+        // --- Telecom (core)
+        "ru.mts",
+        "ru.megafon.mlk",
+        "ru.beeline.services",
+        "ru.tele2.mytele2",
+
+        // --- Government / Classifieds
+        "ru.gosuslugi.android",
+        "ru.avito.android",
+
+        // --- Additional popular (RKS Global VPN-detection list)
+        "ru.sberbank.android",
+        "ru.tinkoff.bank",
+        "com.vk.video",
+        "com.wildberries.ru",
+        "ru.kinopoisk",
+        "ru.ozon.app",
+        "ru.dublgis.dgismobile",
+        "com.vkontakte.music"
     )
 }

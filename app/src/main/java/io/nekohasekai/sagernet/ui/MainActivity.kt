@@ -12,8 +12,10 @@ import android.view.KeyEvent
 import android.view.MenuItem
 import androidx.activity.addCallback
 import androidx.annotation.IdRes
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.LocaleListCompat
 import androidx.preference.PreferenceDataStore
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
@@ -52,6 +54,7 @@ import moe.matsuri.nb4a.about.AboutModificationActivity
 import moe.matsuri.nb4a.blocklist.AccreditedBlocklist
 import moe.matsuri.nb4a.blocklist.BlockedAppsActivity
 import moe.matsuri.nb4a.blocklist.BlockedAppsScanner
+import moe.matsuri.nb4a.blocklist.UserPackagesStore
 import moe.matsuri.nb4a.utils.Util
 
 class MainActivity : ThemedActivity(),
@@ -98,6 +101,13 @@ class MainActivity : ThemedActivity(),
             }
         }
         binding.stats.setOnClickListener { if (DataStore.serviceState.connected) binding.stats.testConnection() }
+
+        binding.blocklistCard.setOnClickListener {
+            startActivity(
+                Intent(this, BlockedAppsActivity::class.java)
+                    .putExtra(BlockedAppsActivity.EXTRA_SHOW_EMPTY, true)
+            )
+        }
 
         setContentView(binding.root)
         changeState(BaseService.State.Idle)
@@ -367,6 +377,18 @@ class MainActivity : ThemedActivity(),
                 return false
             }
 
+            R.id.nav_language -> {
+                showLanguageChooser()
+                binding.drawerLayout.closeDrawers()
+                return false
+            }
+
+            R.id.nav_theme -> {
+                showThemeChooser()
+                binding.drawerLayout.closeDrawers()
+                return false
+            }
+
             R.id.nav_tuiguang -> {
                 launchCustomTab("https://neko-box.pages.dev/喵")
                 return false
@@ -422,15 +444,79 @@ class MainActivity : ThemedActivity(),
         if (it) snackbar(R.string.vpn_permission_denied).show()
     }
 
+    private fun showLanguageChooser() {
+        val items = arrayOf(
+            getString(R.string.language_ru),
+            getString(R.string.language_en)
+        )
+        val tags = arrayOf("ru", "en")
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.menu_language)
+            .setItems(items) { _, which ->
+                AppCompatDelegate.setApplicationLocales(
+                    LocaleListCompat.forLanguageTags(tags[which])
+                )
+            }
+            .show()
+    }
+
+    private fun showThemeChooser() {
+        val items = arrayOf(
+            getString(R.string.theme_light),
+            getString(R.string.theme_dark),
+            getString(R.string.theme_auto)
+        )
+        // Маппинг соответствует io.nekohasekai.sagernet.utils.Theme.getNightMode(mode):
+        //   0 = MODE_NIGHT_FOLLOW_SYSTEM
+        //   1 = MODE_NIGHT_YES
+        //   2 = MODE_NIGHT_NO
+        val modes = intArrayOf(2, 1, 0)
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.menu_theme)
+            .setItems(items) { _, which ->
+                DataStore.nightTheme = modes[which]
+                io.nekohasekai.sagernet.utils.Theme.currentNightMode = modes[which]
+                io.nekohasekai.sagernet.utils.Theme.applyNightTheme()
+                recreate()
+            }
+            .show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        refreshBlocklistCard()
+    }
+
+    private val userPackagesStore by lazy { UserPackagesStore(this) }
+
+    /**
+     * Сканирует блок-лист (defaults + пользовательские) и возвращает
+     * количество найденных установленных приложений. Обновляет карточку.
+     */
+    private fun refreshBlocklistCard(): Int {
+        val found = BlockedAppsScanner.scanInstalled(
+            this,
+            AccreditedBlocklist.defaults,
+            userPackagesStore.getAll()
+        )
+        if (found.isNotEmpty()) {
+            binding.blocklistCard.visibility = android.view.View.VISIBLE
+            binding.blocklistCardSubtitle.text =
+                getString(R.string.blocklist_card_subtitle, found.size)
+        } else {
+            binding.blocklistCard.visibility = android.view.View.GONE
+        }
+        return found.size
+    }
+
     /**
      * Перед фактическим стартом VPN проверяет, есть ли на устройстве
-     * приложения из [AccreditedBlocklist]. Если есть — открывает экран
-     * со списком этих приложений вместо запуска VPN; иначе запускает как
-     * обычно.
+     * приложения из блок-листа (defaults + пользовательские). Если есть —
+     * открывает экран со списком; иначе запускает VPN.
      */
     private fun tryStartVpnWithBlocklistCheck() {
-        val found = BlockedAppsScanner.scan(this, AccreditedBlocklist.defaults)
-        if (found.isNotEmpty()) {
+        val count = refreshBlocklistCard()
+        if (count > 0) {
             startActivity(Intent(this, BlockedAppsActivity::class.java))
         } else {
             connect.launch(null)
