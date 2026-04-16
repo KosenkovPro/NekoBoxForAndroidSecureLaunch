@@ -493,6 +493,7 @@
 <string name="admin_password_message">Чтобы удалить приложение из защищённого списка, введите пароль администратора.</string>
 <string name="admin_password_hint">Пароль</string>
 <string name="admin_password_wrong">Неверный пароль. Пакет не удалён.</string>
+<string name="admin_password_accepted">Пароль принят</string>
 <string name="add_package_title">Добавить пакет в список</string>
 <string name="add_package_message">Введите имя пакета (например com.example.app). Он попадёт в ваш личный список и удалить его можно будет без пароля.</string>
 <string name="add_package_hint">io.element.android.x</string>

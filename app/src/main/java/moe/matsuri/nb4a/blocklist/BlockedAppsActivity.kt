@@ -194,23 +194,29 @@ class BlockedAppsActivity : ThemedActivity() {
     // ---------- Item click ----------
 
     private fun onItemClicked(app: BlockedApp) {
-        when (app.source) {
-            BlocklistSource.USER -> openAppDetails(app)
-            BlocklistSource.DEFAULT -> askAdminPassword { openAppDetails(app) }
-        }
+        // Тап по карточке всегда открывает настройки приложения (без пароля)
+        openAppDetails(app)
     }
 
-    private fun onRemoveUserPackage(app: BlockedApp) {
-        userStore.remove(app.packageName)
-        refresh()
-        Toast.makeText(
-            this,
-            getString(R.string.add_package_added, app.packageName).replace(
-                getString(R.string.add_package_action),
-                getString(R.string.remove_user_package)
-            ),
-            Toast.LENGTH_SHORT
-        ).show()
+    private fun onRemoveClicked(app: BlockedApp) {
+        when (app.source) {
+            BlocklistSource.USER -> {
+                userStore.remove(app.packageName)
+                refresh()
+            }
+            BlocklistSource.DEFAULT -> {
+                askAdminPassword {
+                    // После ввода пароля — убираем из defaults через user-override
+                    // (defaults неизменяем, но можно перенести в «исключения»)
+                    // Пока просто показываем, что пароль принят
+                    Toast.makeText(
+                        this,
+                        getString(R.string.admin_password_accepted),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 
     private fun askAdminPassword(onSuccess: () -> Unit) {
@@ -344,10 +350,10 @@ class BlockedAppsActivity : ThemedActivity() {
                 itemBinding.rksBadge.visibility = View.GONE
             }
 
-            // Кнопка «Удалить из списка» — только для пользовательских пакетов
-            if (app.source == BlocklistSource.USER) {
+            // Кнопка «Удалить из списка» — для user без пароля, для defaults с паролем
+            if (showEmpty) {
                 itemBinding.removeButton.visibility = View.VISIBLE
-                itemBinding.removeButton.setOnClickListener { onRemoveUserPackage(app) }
+                itemBinding.removeButton.setOnClickListener { onRemoveClicked(app) }
             } else {
                 itemBinding.removeButton.visibility = View.GONE
             }

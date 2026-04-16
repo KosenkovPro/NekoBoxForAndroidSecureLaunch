@@ -418,10 +418,6 @@ object AccreditedBlocklist {
         "ru.dublgis.dgismobile",
         "com.vkontakte.music",
 
-        // --- Test
-        "com.facebook.katana",
-        "com.facebook.orca",
-
         // --- Extra popular apps
         "ru.nspk.mirpay",
         "ru.alfabank.mobile.android",
@@ -429,7 +425,7 @@ object AccreditedBlocklist {
         "ru.sberbank.mobile",
         "ru.yandex.music",
         "ru.rutube.app",
-        "com.google.android.youtube",
+        // "com.google.android.youtube", // removed from blocklist
         "ru.ivi.client",
         "ru.more.play",
         "ru.2gis.mobile",

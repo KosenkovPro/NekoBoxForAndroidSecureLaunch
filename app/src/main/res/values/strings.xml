@@ -212,6 +212,7 @@
     <string name="admin_password_message">To uninstall a restricted package, enter the administrator password.</string>
     <string name="admin_password_hint">Password</string>
     <string name="admin_password_wrong">Incorrect password. The package was not removed.</string>
+    <string name="admin_password_accepted">Password accepted</string>
     <string name="add_package_title">Add a package to the watchlist</string>
     <string name="add_package_message">Enter the package name (e.g. com.example.app). It will be added to your personal watchlist — you can remove it later without a password.</string>
     <string name="add_package_hint">io.element.android.x</string>

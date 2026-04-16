@@ -336,13 +336,20 @@ class MainActivity : ThemedActivity(),
 
     @SuppressLint("CommitTransaction")
     fun displayFragment(fragment: ToolbarFragment) {
-        if (fragment is ConfigurationFragment) {
+        val isConfig = fragment is ConfigurationFragment
+        if (isConfig) {
             binding.stats.allowShow = true
             binding.fab.show()
-        } else if (!DataStore.showBottomBar) {
-            binding.stats.allowShow = false
-            binding.stats.performHide()
-            binding.fab.hide()
+            binding.packagesButton.visibility = android.view.View.VISIBLE
+            refreshBlocklistCard()
+        } else {
+            if (!DataStore.showBottomBar) {
+                binding.stats.allowShow = false
+                binding.stats.performHide()
+                binding.fab.hide()
+            }
+            binding.packagesButton.visibility = android.view.View.GONE
+            binding.blocklistCard.visibility = android.view.View.GONE
         }
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_holder, fragment)
