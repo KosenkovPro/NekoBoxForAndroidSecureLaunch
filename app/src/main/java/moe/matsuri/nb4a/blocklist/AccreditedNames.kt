@@ -369,7 +369,21 @@ object AccreditedNames {
         "ru.kinopoisk" to "Kinopoisk",
         "ru.ozon.app" to "Ozon",
         "ru.dublgis.dgismobile" to "2GIS",
-        "com.vkontakte.music" to "VK Music"
+        "com.vkontakte.music" to "VK Music",
+        "com.facebook.katana" to "Facebook",
+        "com.facebook.orca" to "Messenger",
+        "ru.nspk.mirpay" to "Mir Pay",
+        "ru.alfabank.mobile.android" to "Alfa-Bank",
+        "ru.sberbank.online" to "Sberbank Online",
+        "ru.sberbank.mobile" to "Sber",
+        "ru.yandex.music" to "Yandex Music",
+        "ru.rutube.app" to "Rutube",
+        "com.google.android.youtube" to "YouTube",
+        "ru.ivi.client" to "IVI",
+        "ru.more.play" to "More.tv",
+        "ru.2gis.mobile" to "2GIS",
+        "ru.yandex.go" to "Yandex Go",
+        "ru.pochta.app" to "Russian Post"
     )
 
     private val namesRu: Map<String, String> = mapOf(
@@ -723,6 +737,20 @@ object AccreditedNames {
         "ru.kinopoisk" to "Кинопоиск",
         "ru.ozon.app" to "Озон",
         "ru.dublgis.dgismobile" to "2ГИС",
-        "com.vkontakte.music" to "VK Музыка"
+        "com.vkontakte.music" to "VK Музыка",
+        "com.facebook.katana" to "Facebook",
+        "com.facebook.orca" to "Мессенджер Facebook",
+        "ru.nspk.mirpay" to "Мир Пэй",
+        "ru.alfabank.mobile.android" to "Альфа-Банк",
+        "ru.sberbank.online" to "Сбербанк Онлайн",
+        "ru.sberbank.mobile" to "Сбер",
+        "ru.yandex.music" to "Яндекс Музыка",
+        "ru.rutube.app" to "Рутуб",
+        "com.google.android.youtube" to "Ютуб",
+        "ru.ivi.client" to "Иви",
+        "ru.more.play" to "Море ТВ",
+        "ru.2gis.mobile" to "2ГИС",
+        "ru.yandex.go" to "Яндекс Go",
+        "ru.pochta.app" to "Почта России"
     )
 }

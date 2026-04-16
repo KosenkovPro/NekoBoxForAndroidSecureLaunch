@@ -305,6 +305,38 @@ private val categoryMap: Map<String, PackageCategory> = buildMap {
         "ru.dublgis.dgismobile"
     )
 
+    put(PackageCategory.SOCIAL,
+        "com.facebook.katana", "com.facebook.orca"
+    )
+
+    put(PackageCategory.PAYMENTS,
+        "ru.nspk.mirpay"
+    )
+
+    put(PackageCategory.FINANCE,
+        "ru.alfabank.mobile.android", "ru.sberbank.online", "ru.sberbank.mobile"
+    )
+
+    put(PackageCategory.MUSIC,
+        "ru.yandex.music", "com.vkontakte.music"
+    )
+
+    put(PackageCategory.MEDIA,
+        "ru.rutube.app", "com.google.android.youtube", "ru.ivi.client", "ru.more.play"
+    )
+
+    put(PackageCategory.MAPS,
+        "ru.2gis.mobile"
+    )
+
+    put(PackageCategory.TAXI,
+        "ru.yandex.go"
+    )
+
+    put(PackageCategory.GOVERNMENT,
+        "ru.pochta.app"
+    )
+
     put(PackageCategory.MISC,
         "ru.yandex.searchplugin", "ru.yandex.search",
         "ru.yandex.services", "ru.yandex.superapp",

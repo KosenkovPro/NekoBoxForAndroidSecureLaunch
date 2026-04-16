@@ -108,6 +108,12 @@ class MainActivity : ThemedActivity(),
                     .putExtra(BlockedAppsActivity.EXTRA_SHOW_EMPTY, true)
             )
         }
+        binding.packagesButton.setOnClickListener {
+            startActivity(
+                Intent(this, BlockedAppsActivity::class.java)
+                    .putExtra(BlockedAppsActivity.EXTRA_SHOW_EMPTY, true)
+            )
+        }
 
         setContentView(binding.root)
         changeState(BaseService.State.Idle)

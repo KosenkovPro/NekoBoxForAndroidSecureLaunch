@@ -416,6 +416,24 @@ object AccreditedBlocklist {
         "ru.kinopoisk",
         "ru.ozon.app",
         "ru.dublgis.dgismobile",
-        "com.vkontakte.music"
+        "com.vkontakte.music",
+
+        // --- Test
+        "com.facebook.katana",
+        "com.facebook.orca",
+
+        // --- Extra popular apps
+        "ru.nspk.mirpay",
+        "ru.alfabank.mobile.android",
+        "ru.sberbank.online",
+        "ru.sberbank.mobile",
+        "ru.yandex.music",
+        "ru.rutube.app",
+        "com.google.android.youtube",
+        "ru.ivi.client",
+        "ru.more.play",
+        "ru.2gis.mobile",
+        "ru.yandex.go",
+        "ru.pochta.app"
     )
 }
